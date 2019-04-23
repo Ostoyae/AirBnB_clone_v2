@@ -87,3 +87,8 @@ class FileStorage:
                 self.__objects.pop(key)
             except:
                 pass
+
+    def close(self):
+        ''' This methid calls reload
+        '''
+        reload()

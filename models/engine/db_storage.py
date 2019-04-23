@@ -12,7 +12,6 @@ from models.amenity import Amenity
 from models.review import Review
 from os import getenv
 
-Avalible = [State, City, User, Place]
 class DBStorage:
     """This class handles the interation with the database for the
     project
@@ -23,6 +22,8 @@ class DBStorage:
     """
     __engine = None
     __session = None
+    __all_classes = {"User": User, "State": State, "City": City,
+            "Amenity": Amenity, "Place": Place, "Review": Review}
 
     def __init__(self):
         """Create a DBStorage object
@@ -50,12 +51,15 @@ class DBStorage:
         """
         collection = dict()
         if cls:
-            session = self.__session.query(cls)
+            if type(cls) is not str:
+                session = self.__session.query(cls)
+            else:
+                session = self.__session.query(self.__all_classes[cls])
             for entity in session:
                 key = '{}.{}'.format(entity.__class__.__name__, entity.id)
                 collection.update({key: entity})
         else:
-            for obj in Avalible:
+            for k, obj in self.__all_classes.items():
                 session = self.__session.query(obj).all()
                 for entity in session:
                     key = '{}.{}'.format(entity.__class__.__name__, entity.id)
@@ -98,4 +102,7 @@ class DBStorage:
         self.__session = Session()
 
 
-
+    def close(self):
+        '''This closes as SQLalchemy session
+        '''
+        self.__session.close()
