@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 # add route '/hbnb' returns HBNB
-from web_flask import app
+from flask import Flask
+
+app = Flask(__name__)
+app.url_map.strict_slashes = False
 
 
 @app.route('/')

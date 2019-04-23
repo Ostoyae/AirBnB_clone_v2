@@ -1,7 +1,10 @@
 #!/usr/bin/python3
-from web_flask import app
-from flask import render_template, abort
+from flask import Flask
+from flask import abort, render_template
 from models import storage
+
+app = Flask(__name__)
+app.url_map.strict_slashes = False
 
 
 @app.route('/states_list')
@@ -18,6 +21,9 @@ def list_state():
 
 @app.route('/cities_by_state')
 def cities_by_state():
+    ''' Gets State from DB and renders
+    template that displays state and their cities
+    '''
     states = []
     for key, state in storage.all("State").items():
         states.append({
@@ -31,6 +37,8 @@ def cities_by_state():
 
 @app.teardown_appcontext
 def teardown_storage(self):
+    ''' Teardown storage
+    '''
     storage.close()
 
 

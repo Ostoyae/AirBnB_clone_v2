@@ -1,11 +1,17 @@
 #!/usr/bin/python3
-from web_flask import app
-from flask import render_template, abort
+from flask import Flask
+from flask import abort, render_template
 from models import storage
+
+app = Flask(__name__)
+app.url_map.strict_slashes = False
 
 
 @app.route('/states_list')
 def list_state():
+    '''Get states form DB and renders a 
+    list of all the state with their id
+    '''
     states = []
     for key, state in storage.all("State").items():
         states.append({'id': state.id, 'name': state.name})

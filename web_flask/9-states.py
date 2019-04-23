@@ -1,12 +1,22 @@
 #!/usr/bin/python3
-from web_flask import app
-from flask import render_template, abort
+from flask import Flask
+from flask import abort, render_template
 from models import storage
+
+app = Flask(__name__)
+app.url_map.strict_slashes = False
 
 
 @app.route('/states')
 @app.route('/states/<id>')
 def get_state(id=None):
+    '''Get a state is id is provided then renders a template 
+    with its cities
+    else if no id is provided print all states with their ids
+
+    Returns:
+        rendered template
+    '''
     states_db = storage.all('State')
     states = {'size': 0, 'states': list()}
     if id:
@@ -28,6 +38,8 @@ def get_state(id=None):
 
 @app.teardown_appcontext
 def teardown_storage(self):
+    ''' Teardown storage
+    '''
     storage.close()
 
 
