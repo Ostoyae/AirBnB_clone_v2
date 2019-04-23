@@ -60,7 +60,7 @@ def render_number_odd_even(n):
     '''check if n is a int number
     then render a template that check if the number is odd or even
 
-    This version does the logic in the script and then suplises the 
+    This version does the logic in the script and then suplises the
     answer via dictionary
     '''
     try:

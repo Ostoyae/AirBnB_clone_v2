@@ -22,13 +22,14 @@ def get_state(id=None):
             states['states'].append({
                 'id': state.id,
                 'name': state.name,
-                })
+            })
     return render_template("9-states.html", item=states)
 
-    
+
 @app.teardown_appcontext
 def teardown_storage(self):
     storage.close()
+
 
 if __name__ == "__main__":
     app.run()
