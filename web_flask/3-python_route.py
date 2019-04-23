@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 # add route '/hbnb' returns HBNB
 from web_flask import app
-from flask import abort
 
 
 @app.route('/')
@@ -31,17 +30,6 @@ def python_said(text='is cool'):
     '''retuns a string with "python <text>"
     '''
     return "Python {}".format(text.replace('_', ' '))
-
-
-@app.route('/number/<n>')
-def is_int_number(n):
-    '''check if n is a int number
-    '''
-    try:
-        string = "{} is a number".format(int(n))
-        return string
-    except Exception:
-        abort(404)
 
 
 if __name__ == '__main__':
