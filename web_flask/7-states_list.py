@@ -9,13 +9,12 @@ app.url_map.strict_slashes = False
 
 @app.route('/states_list')
 def list_state():
-    '''Get states form DB and renders a 
+    '''Get states form DB and renders a
     list of all the state with their id
     '''
     states = []
     for key, state in storage.all("State").items():
         states.append({'id': state.id, 'name': state.name})
-
     return render_template("7-states_list.html", states=states)
 
 

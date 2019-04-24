@@ -35,11 +35,12 @@ class FileStorage:
                     inspect.isclass
                 )
             ]
-            if cls.__name__ in d:
+            if cls in d or cls.__name__ in d:
                 return {
                     key: value
                     for key, value in self.__objects.items()
-                    if value.__class__ is cls
+                    if value.__class__.__name__ is cls or
+                    value.__class__ is cls
                 }
             else:
                 return dict()
@@ -91,4 +92,4 @@ class FileStorage:
     def close(self):
         ''' This methid calls reload
         '''
-        reload()
+        self.reload()
