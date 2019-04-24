@@ -10,7 +10,7 @@ app.url_map.strict_slashes = False
 @app.route('/states')
 @app.route('/states/<id>')
 def get_state(id=None):
-    '''Get a state is id is provided then renders a template 
+    '''Get a state is id is provided then renders a template
     with its cities
     else if no id is provided print all states with their ids
 
