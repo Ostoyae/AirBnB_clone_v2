@@ -19,7 +19,7 @@ def list_state():
     return render_template("7-states_list.html", states=states)
 
 
-@app.route('/cities_by_state')
+@app.route('/cities_by_states')
 def cities_by_state():
     ''' Gets State from DB and renders
     template that displays state and their cities
