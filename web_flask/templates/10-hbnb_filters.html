@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" type="text/css" href="styles/4-common.css">
-    <link rel="stylesheet" type="text/css" href="styles/3-header.css">
-    <link rel="stylesheet" type="text/css" href="styles/3-footer.css">
-    <link rel="stylesheet" type="text/css" href="styles/6-filters.css">
-    <link rel="icon" href="images/icon.png" />
+    <link rel="stylesheet" type="text/css" href="static/styles/4-common.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/3-header.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/3-footer.css">
+    <link rel="stylesheet" type="text/css" href="static/styles/6-filters.css">
+    <link rel="icon" href="static/images/icon.png" />
     <title>HBnB</title>
   </head>
   <body>
@@ -18,11 +18,11 @@
 	  <h3>States</h3>
 	  <div class="popover">
 	    <ul>
-{%- for k, state in states.items()|sort(attribute="name") %}
+{%- for state in states %}
 	      <li>
 		<h2>{{ state.name }}:</h2>
 		<ul>
-	{% for city in state.cities %}
+	{% for city in state.cities|sort(attribute='name') %}
 		  <li>{{ city.name }}</li>
 	{% endfor %}
 		</ul>
@@ -35,7 +35,7 @@
 	  <h3>Amenities</h3>
 	  <div class="popover">
 	    <ul>
-{% for k, amenity in amenities.items()|sort(attribute='name') %}
+{% for amenity in amenities %}
 	      <li>{{ amenity.name }}</li>
 {% endfor %}
 	    </ul>
