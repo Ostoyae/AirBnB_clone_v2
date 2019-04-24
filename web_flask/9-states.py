@@ -33,6 +33,7 @@ def get_state(id=None):
                 'id': state.id,
                 'name': state.name,
             })
+            states['states'] = sorted(states['states'], key=lambda s: s['name'])
     return render_template("9-states.html", item=states)
 
 
