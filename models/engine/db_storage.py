@@ -12,6 +12,7 @@ from models.amenity import Amenity
 from models.review import Review
 from os import getenv
 
+
 class DBStorage:
     """This class handles the interation with the database for the
     project
@@ -23,7 +24,7 @@ class DBStorage:
     __engine = None
     __session = None
     __all_classes = {"User": User, "State": State, "City": City,
-            "Amenity": Amenity, "Place": Place, "Review": Review}
+                     "Amenity": Amenity, "Place": Place, "Review": Review}
 
     def __init__(self):
         """Create a DBStorage object
@@ -95,12 +96,11 @@ class DBStorage:
         """
         Base.metadata.create_all(bind=self.__engine)
         session_factory = sessionmaker(
-                bind=self.__engine,
-                expire_on_commit=False
-                )
+            bind=self.__engine,
+            expire_on_commit=False
+        )
         Session = scoped_session(session_factory)
         self.__session = Session()
-
 
     def close(self):
         '''This closes as SQLalchemy session
