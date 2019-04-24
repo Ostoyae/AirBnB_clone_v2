@@ -9,7 +9,7 @@
 {% elif item.size > 1 %}
 	<H1>States</H1>
         <UL>
-		{% for state in item.states %}
+		{% for state in item.states|sort(attribute='name') %}
             <LI>{{ state.id }}: <B>{{ state.name }}</B></LI>
 		{% endfor %}
         </UL>
@@ -17,7 +17,7 @@
         <H1>State: {{ item.states[0].name }}</H1>
 	<H3>Cities:</H3>
         <UL>
-		{% for city in item.states[0].cities  %}
+		{% for city in item.states[0].cities|sort(attribute='name')  %}
             <LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
 		{% endfor %}
         </UL>
