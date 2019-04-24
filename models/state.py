@@ -25,4 +25,6 @@ class State(BaseModel, Base):
         @property
         def cities(self):
             obj = models.storage.all(City)
-            return [v for k, v in obj.items() if v.state_id == self.id]
+            ls =  [v for k, v in obj.items() if v.state_id == self.id]
+            sorted(ls, key=lambda city: city.name)
+            return ls
