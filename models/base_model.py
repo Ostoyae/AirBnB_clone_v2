@@ -41,8 +41,17 @@ class BaseModel:
         Return:
             returns a string of class name, id, and dictionary
         """
+        my_dict = self.to_dict()
+        my_dict['created_at'] =  datetime.strptime(
+                my_dict['created_at'],
+                "%Y-%m-%dT%H:%M:%S.%f"
+                )
+        my_dict['updated_at'] =  datetime.strptime(
+                my_dict['updated_at'],
+                "%Y-%m-%dT%H:%M:%S.%f"
+                )
         return "[{}] ({}) {}".format(
-            type(self).__name__, self.id, self.to_dict())
+            type(self).__name__, self.id, my_dict)
 
     def __repr__(self):
         """return a string representaion
